@@ -9,6 +9,7 @@ To install huekey from git you can either download the zip or execute the follow
 ```
 	git clone https://github.com/tfreedman/huekey
 ```
+
 There are two main components to huekey: the scenes.py file and the command scripts.
 
 ##Scenes.py
@@ -16,6 +17,14 @@ You will define all of the scenes you want to be able to trigger in this file. I
 If you're uncomfortable with sending individual commands to control the lights, I'd recommend getting the status of your system when you have it set to your liking and using that response to control the lights.
 
 Before you begin, make sure to edit the scenes.py file, line 2, to add your bridge's IP address.
+
+You may also need to add a line immediately after line 2, containing 
+
+```
+	b.connect()
+```
+
+This is necessary if you've never used phue before, in order to get authorization from the bridge. Add b.connect(), save the file, and run ./scenes.py from the command line, after first pressing the button on your bridge. This only has to be done once, and then b.connect() can be removed. Otherwise, it's likely that your scripts will crash, as they don't have access to the Hue API.
 
 For example, if I like the settings on lights 2 and 3 and want to turn that into a scene, I would execute the following commands in Terminal:
 ```
