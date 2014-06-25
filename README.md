@@ -7,7 +7,7 @@ Using huekey requires that you already have [phue](https://github.com/studioimag
 
 To install huekey from git you can either download the zip or execute the following command in terminal after navigating to the directory where you want huekey to live.
 ```
-	git clone https://github.com/bradykent/huekey
+	git clone https://github.com/tfreedman/huekey
 ```
 There are two main components to huekey: the scenes.py file and the command scripts.
 
@@ -39,10 +39,21 @@ After you change the above lines to work, save the file with a name that you'll 
 
 **IMPORTANT:** The command scripts need to be in the same folder as the scenes.py file to work. They also need to be executable (Either via the Terminal by running: chmod +x file.command or by Get Info in Finder)
 
-##BetterTouchTool
-Now for the final step. Open BTT and create your actions, pointing the triggers to "Open Application / File / Script" and then selecting the script you want to run. Then test it and it should work!
+##Creating AppleScripts
+BetterTouchTool has the ability to run a script when you press a keyboard shortcut. However, if you run a bash script / terminal command, a terminal window will pop open and close every time you press a key. The workaround to this is to create an AppleScript that runs the terminal command scripts created above, as AppleScripts don't spawn windows when they run.
 
-If you want terminal to close automatically after running the script, go to Terminal preferences->settings->shell and change "When the shell exits:" to "Close if the shell exited cleanly"
+Open the AppleScript Editor, and paste the following:
+
+```
+	do shell script "/Users/YOUR.NAME.HERE/Applications/HueKey/YOUR.COMMAND.HERE.command"
+```
+
+Press compile, then save it in the same folder as the .command files / scenes.py file. 
+
+##BetterTouchTool
+Now for the final step. Open BTT and create your actions, pointing the triggers to "Open Application / File / Script" and then selecting the AppleScript you want to run. Then test it and it should work!
+
+If you didn't create an AppleScript, you can also select the .command files directly. However, this will open and close a terminal every time, which isn't as clean.
 
 ##Other Apps
 Not satisfied with BTT, and you'd rather activate these with a keyboard command? Take a look at [FastScripts](http://www.red-sweater.com/fastscripts/) or any other app that'll let you launch a script with a keyboard shorcut (Keyboard Maestro comes to mind, or Alfred...).
