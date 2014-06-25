@@ -18,6 +18,38 @@ def all_on():
 def all_off():
 	b.set_light(lights,'on',False)
 
+def increase_brightness():
+	if lights[1].on == False:
+		lights[1].on = True
+	elif lights[1].brightness < 224 and lights[1].brightness >= 30:
+		brightness = lights[1].brightness + 32		
+	if lights[2].on == False:
+		lights[2].on = True
+	if lights[3].on == False:
+		lights[3].on = True
+	if lights[1].brightness >= 224:
+		brightness = 255
+	lights[1].brightness = brightness
+	lights[2].brightness = brightness
+	lights[3].brightness = brightness
+	print brightness
+
+def decrease_brightness():
+	if lights[1].brightness > 32:
+		brightness = lights[1].brightness - 32
+	else:
+		brightness = 0
+		if lights[1].on == True:
+			lights[1].on = False
+		if lights[2].on == True:
+			lights[2].on = False
+		if lights[3].on == True:
+			lights[3].on = False
+	lights[1].brightness = brightness
+	lights[2].brightness = brightness
+	lights[3].brightness = brightness
+	print brightness
+
 # Will turn light 1 on or off
 def example():
 	if b.get_light(1,'on') is False:
